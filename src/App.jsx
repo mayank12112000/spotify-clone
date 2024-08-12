@@ -47,13 +47,16 @@ function App() {
   return (
     <>
       <Navbar />
+      <div className="container m-0">
+
       <div className="row ">
         <div className="col-sm">
           <SongList songs={songs} loading={loading} setCurrentSong={setCurrentSong} />
         </div>
-        <div className="col-sm">
+        <div className="col-sm d-flex justify-content-center p-0">
           <MusicPlayer currentSong={currentSong} />
         </div>
+      </div>
       </div>
     </>
   );
