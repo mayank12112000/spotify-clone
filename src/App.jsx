@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 import SongList from "./components/SongList";
 import MusicPlayer from "./components/MusicPlayer";
 import "./App.css";
@@ -8,8 +8,8 @@ function App() {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentSong,setCurrentSong] = useState(null)
-console.log("current songs:", currentSong)
+  const [currentSong, setCurrentSong] = useState(null);
+  console.log("current songs:", currentSong);
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -22,10 +22,10 @@ console.log("current songs:", currentSong)
           data.data.map(async (song) => {
             return new Promise((resolve) => {
               const audio = new Audio(song.url);
-              audio.addEventListener('loadedmetadata', () => {
+              audio.addEventListener("loadedmetadata", () => {
                 resolve({
                   ...song,
-                  duration: audio.duration
+                  duration: audio.duration,
                 });
               });
             });
@@ -45,17 +45,26 @@ console.log("current songs:", currentSong)
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="row">
-      <div className="col-sm-1 col-md-2 p-0">
-        <Sidebar />
+    <>
+      <Navbar />
+      <div className="row">
+        <div className="col-6">
+          <div className="row">
+            <div className="col-3"></div>
+            <div className="col-9">
+              <SongList
+                songs={songs}
+                loading={loading}
+                setCurrentSong={setCurrentSong}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <MusicPlayer currentSong={currentSong} />
+        </div>
       </div>
-      <div className="col-sm-5 col-md-5 p-0 d-flex align-items-center">
-        <SongList songs={songs} loading={loading} setCurrentSong={setCurrentSong} />
-      </div>
-      <div className="col-sm-5 flex-grow-1 p-0">
-        <MusicPlayer currentSong={currentSong} />
-      </div>
-    </div>
+    </>
   );
 }
 

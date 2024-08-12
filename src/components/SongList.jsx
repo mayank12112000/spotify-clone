@@ -4,23 +4,14 @@ const SongList = ({songs,loading,setCurrentSong}) => {
   
  console.log(songs)
     return (
-      <main className='song-list container '>
-        <div className="my-3 mx-0 btn-container container">
-        <button className='ml-0 fs-5'> For You </button>
-        <button className='ml-3 fs-5'> Top Tracks </button> <br />
-        </div>
+      <main className='song-list container'>
+      <div className="row m-3 songlist-row">
         <div className="search-box">
         <input type="text" placeholder='Search Song, Artist' />
         <i className="search-icon fa fa-search" aria-hidden="true"></i>
         </div>
-        {/* Button to trigger the offcanvas on smaller screens */}
-        <button className="btn btn-primary d-md-none" onClick={() => setShow(true)}>
-          Show Song List
-        </button>
   
-        
-        {/* Song list for larger screens */}
-        <div className="my-3 song-list d-none d-md-block">
+        <div className="my-3 song-list d-md-block">
           <div className=" h-100 justify-content-center align-items-center">
             <div className="w-100">
               {songs && songs.map((song) => (
@@ -38,6 +29,7 @@ const SongList = ({songs,loading,setCurrentSong}) => {
             </div>
           </div>
         </div>
+              </div>
       </main>
     );
   };
