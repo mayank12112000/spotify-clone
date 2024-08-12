@@ -3,13 +3,18 @@ import Navbar from "./components/Navbar";
 import SongList from "./components/SongList";
 import MusicPlayer from "./components/MusicPlayer";
 import "./App.css";
+import useDominantColor from "./utils/useDominantColor";
 
 function App() {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
+  const coverImageUrl = currentSong ? `https://cms.samespace.com/assets/${currentSong.cover}` : null;
+  const dominantColor = useDominantColor(coverImageUrl);
+
   console.log("current songs:", currentSong);
+  
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -45,7 +50,7 @@ function App() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <>
+    <div style={{ background: `linear-gradient(to right, ${dominantColor}, black)` }}>
       <Navbar />
       <div className="container m-0">
 
@@ -58,7 +63,7 @@ function App() {
         </div>
       </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -117,9 +117,6 @@ button:focus-visible {
 }
 /* gradient */
 
-body{
-  background: linear-gradient(#1f1616, #767fdf);
-}
 button{
   background-color: transparent;
   color: white;
