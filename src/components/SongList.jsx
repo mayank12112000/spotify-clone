@@ -4,7 +4,7 @@ const SongList = ({songs,loading,setCurrentSong}) => {
   
  console.log(songs)
     return (
-      <main className='song-list container'>
+      <main className='song-list-container container'>
       <div className="row m-3 songlist-row">
         <div className="search-box">
         <input type="text" placeholder='Search Song, Artist' />

@@ -47,20 +47,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="row">
-        <div className="col-6">
-          <div className="row">
-            <div className="col-3"></div>
-            <div className="col-9">
-              <SongList
-                songs={songs}
-                loading={loading}
-                setCurrentSong={setCurrentSong}
-              />
-            </div>
-          </div>
+      <div className="row ">
+        <div className="col-sm">
+          <SongList songs={songs} loading={loading} setCurrentSong={setCurrentSong} />
         </div>
-        <div className="col-6">
+        <div className="col-sm">
           <MusicPlayer currentSong={currentSong} />
         </div>
       </div>

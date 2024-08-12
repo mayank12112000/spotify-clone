@@ -96,8 +96,15 @@ button{
   background-color: transparent;
   color: white;
 }
+@media (min-width: 768px) {
+  .song-list-container {
+    margin-left: 13.5rem;
+    width: 27.5rem;
+  }
+}
+
 .song-list{
-  margin-left: 15px;
+  padding:0;
 }
 .search-icon{
   position: absolute;
