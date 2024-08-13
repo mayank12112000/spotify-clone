@@ -3,17 +3,23 @@ import React, { useRef, useState, useEffect } from "react";
 export default function MusicPlayer({ currentSong }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    console.log("audioref.current", audioRef.current);
     if (audioRef.current) {
       audioRef.current.src = currentSong?.url || "";
       audioRef.current.load();
-      audioRef.current.play();
-      setIsPlaying(true)
+      if (isPlaying) {
+        audioRef.current.play();
+      }
     }
-  }, [currentSong]);
+  }, [currentSong, isPlaying]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted; // Mute or unmute audio based on isMuted
+    }
+  }, [isMuted]);
 
   const togglePlayback = () => {
     if (audioRef.current) {
@@ -32,6 +38,10 @@ export default function MusicPlayer({ currentSong }) {
       audioRef.current.currentTime = 0;
       setIsPlaying(false);
     }
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
   };
 
   return (
@@ -56,20 +66,42 @@ export default function MusicPlayer({ currentSong }) {
         </div>
       </div>
       <div className="music-player__controls d-flex align-items-center justify-content-between">
-        <button className="musicplayer-icon bg-player "><span>...</span></button>
-        <div>
+        <button className="musicplayer-icon bg-player">
+          <span>...</span>
+        </button>
+        <div className="d-flex justify-content-center">
           <big>
-
-        <i class="fa fa-backward musicplayer-icon" aria-hidden="true"></i>
+            <i className="fa fa-backward musicplayer-icon faded mx-3" aria-hidden="true"></i>
           </big>
-        {isPlaying ? (
-           <big> <i class="fa fa-pause-circle musicplayer-icon mx-3" onClick={stopPlayback} aria-hidden="true"></i></big>
-        ) : (
-            <big><i class="fa fa-play-circle musicplayer-icon mx-3" onClick={togglePlayback} aria-hidden="true"></i></big>
-        )}
-        <big><i class="fa fa-forward musicplayer-icon" aria-hidden="true"></i></big>
+          {isPlaying ? (
+            <i
+              className="fa fa-pause-circle musicplayer-icon mx-3 fs-1"
+              onClick={stopPlayback}
+              aria-hidden="true"
+            ></i>
+          ) : (
+            <i
+              className="fa fa-play-circle musicplayer-icon mx-3 fs-1"
+              onClick={togglePlayback}
+              aria-hidden="true"
+            ></i>
+          )}
+          <big>
+            <i className="fa fa-forward musicplayer-icon faded mx-3" aria-hidden="true"></i>
+          </big>
         </div>
-        <i class="fa fa-volume-up musicplayer-icon bg-player" aria-hidden="true"></i>
+        {isMuted ? (
+          <i
+            onClick={toggleMute}
+            className="fa fa-volume-off musicplayer-icon bg-player"
+            aria-hidden="true"
+          ></i>
+        ) : (
+          <i
+            onClick={toggleMute}
+            className="fa fa-volume-up musicplayer-icon bg-player"
+          ></i>
+        )}
       </div>
       <audio ref={audioRef} />
     </div>

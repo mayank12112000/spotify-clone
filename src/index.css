@@ -181,3 +181,6 @@ button{
   letter-spacing: 2.5px;
   color: #fff; /* Set dot color to white */
 }
+.faded{
+  color:  #494747; 
+}
