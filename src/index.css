@@ -84,8 +84,8 @@ button:focus-visible {
 }
 /* song-list */
 .songlist-images{
-  width: 2.75rem; 
-  height: 2.75rem;
+  width: 3.25rem; 
+  aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: cover; 
 }

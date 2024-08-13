@@ -98,7 +98,7 @@ export default function MusicPlayer({ currentSong }) {
           <p className="music-player__artist">{currentSong?.artist}</p>
         </div>
         <div className="music-player__image-container rounded-circle d-flex justify-content-center align-items-center">
-          {currentSong && (
+          {currentSong ?(
             <img
               className="music-player-image"
               src={
@@ -108,7 +108,10 @@ export default function MusicPlayer({ currentSong }) {
               }
               alt={currentSong.name}
             />
-          )}
+          )
+        :
+        <img className="music-player-image" src="images/defaultImage.jpeg" alt="select song to play music" />
+        }
         </div>
       </div>
       {currentSong && (
