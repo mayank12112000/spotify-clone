@@ -167,17 +167,26 @@ button{
 .music-player-image{
   width: 100%;
   aspect-ratio: 1/1;
+  padding: 1rem;
   object-fit: cover;
   border-radius: 0.5rem;
 }
-.music-player__controls{
+.music-player-controls{
   background-color: transparent;
+  margin-top: 1rem;
   height: 2.5rem;
   font-size: larger;
+}
+@media (min-width: 768px){
+  .music-player-controls{
+  position: relative;
+  top: -55px;
+  }
 }
 .musicplayer-icon{
   border-radius: 50%;
   color: white;
+  font-size: larger;
 
 }
 .bg-player{
@@ -212,4 +221,33 @@ button{
 }
 .artist-faded{
   color: #afb3b4;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px; 
+  background: black; 
+  border-radius: 5px; 
+}
+/* responsive ness */
+@media (max-width: 768px) {
+  .music-player-progress {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .music-player-progress {
+    /* padding: 0; */
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+.internal-icon{
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  font-size: 2rem; 
+}
+.plr-3{
+  padding-left: 1rem;
 }

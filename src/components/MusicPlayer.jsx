@@ -92,10 +92,10 @@ export default function MusicPlayer({ currentSong }) {
   }, [isPlaying]);
   return (
     <div className="music-player row">
-      <div className="details container d-flex flex-column justify-content-center">
+      <div className="details p-0 container d-flex flex-column justify-content-center">
         <div className="music-player__info">
-          <p className="music-player__title fs-2 fw-bold m-0">{currentSong?.name}</p>
-          <p className="music-player__artist artist-faded fs-6">{currentSong?.artist}</p>
+          <p className="music-player__title plr-3 fs-2 fw-bold m-0">{currentSong?.name}</p>
+          <p className="music-player__artist plr-3 artist-faded fs-6">{currentSong?.artist}</p>
         </div>
         <div className="music-player__image-container rounded-circle d-flex justify-content-center align-items-center">
           {currentSong ?(
@@ -115,7 +115,7 @@ export default function MusicPlayer({ currentSong }) {
         </div>
       </div>
       {currentSong && (
-        <div className="music-player__progress">
+        <div className="music-player-progress">
           <input
             type="range"
             min="0"
@@ -127,38 +127,35 @@ export default function MusicPlayer({ currentSong }) {
         </div>
       )}
       {currentSong && (
-        <div className="music-player__controls d-flex align-items-center justify-content-between">
+        <div className="music-player-controls d-flex align-items-center justify-content-between">
           <button className="musicplayer-icon bg-player">
             <span>...</span>
           </button>
           <div className="d-flex justify-content-center">
-            <big>
               <i
                 onClick={skipBackward}
-                className="fa fa-backward musicplayer-icon faded mx-3"
+                className="fa fa-backward internal-icon  musicplayer-icon faded mx-3"
                 aria-hidden="true"
               ></i>
-            </big>
+          
             {isPlaying ? (
               <i
-                className="fa fa-pause-circle musicplayer-icon mx-3 fs-1"
-                onClick={togglePlayback}
-                aria-hidden="true"
+              className="fa fa-pause-circle  internal-icon musicplayer-icon mx-3 fs-1"
+              onClick={togglePlayback}
+              aria-hidden="true"
               ></i>
             ) : (
               <i
-                className="fa fa-play-circle musicplayer-icon mx-3 fs-1"
-                onClick={togglePlayback}
-                aria-hidden="true"
+              className="fa fa-play-circle  internal-icon musicplayer-icon mx-3 fs-1"
+              onClick={togglePlayback}
+              aria-hidden="true"
               ></i>
             )}
-            <big>
               <i
                 onClick={skipForward}
-                className="fa fa-forward musicplayer-icon faded mx-3"
+                className="fa fa-forward  internal-icon musicplayer-icon faded mx-3"
                 aria-hidden="true"
               ></i>
-            </big>
           </div>
           {isMuted ? (
             <i
