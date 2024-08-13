@@ -184,3 +184,6 @@ button{
 .faded{
   color:  #494747; 
 }
+.progress-bar{
+ width: 100%;
+}
