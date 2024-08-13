@@ -187,3 +187,7 @@ button{
 .progress-bar{
  width: 100%;
 }
+
+.max-height {
+  min-height: 100vh;
+}

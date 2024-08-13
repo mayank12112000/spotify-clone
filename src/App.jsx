@@ -12,8 +12,6 @@ function App() {
   const [currentSong, setCurrentSong] = useState(null);
   const coverImageUrl = currentSong ? `https://cms.samespace.com/assets/${currentSong.cover}` : null;
   const dominantColor = useDominantColor(coverImageUrl);
-
-  console.log("current songs:", currentSong);
   
   useEffect(() => {
     const fetchSongs = async () => {
@@ -50,7 +48,7 @@ function App() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div style={{ background: `linear-gradient(to right, ${dominantColor}, black)` }}>
+    <div className="max-height" style={{ background: `linear-gradient(to right, ${dominantColor}, black)` }}>
       <Navbar />
       <div className="container m-0">
 

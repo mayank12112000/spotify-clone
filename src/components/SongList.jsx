@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 const SongList = ({songs,loading,setCurrentSong}) => {
   
- console.log(songs)
     return (
       <main className='song-list-container container'>
       <div className="row m-3 songlist-row">
