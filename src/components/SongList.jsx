@@ -5,6 +5,7 @@ const SongList = ({ currentPage, setCurrentSong }) => {
   const [loading, setLoading] = useState(true);
   const [songsList, setSongsList] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSongId, setSelectedSongId] = useState(null); // State to track the selected song
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -54,7 +55,10 @@ const SongList = ({ currentPage, setCurrentSong }) => {
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     song.artist.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  const handleSongClick = (song) => {
+    setCurrentSong(song);
+    setSelectedSongId(song.id); // Set the selected song ID
+  };
   return (
     <main className='song-list-container container'>
       <div className="row m-3 songlist-row">
@@ -72,11 +76,13 @@ const SongList = ({ currentPage, setCurrentSong }) => {
             <div className="w-100">
               {filteredSongs && filteredSongs.map((song) => (
                 <div
-                  onClick={() => setCurrentSong(song)}
-                  key={song.id}
-                  className="song-box mb-3 d-flex align-items-center"
-                >
-                  <div>
+                onClick={() => handleSongClick(song)}
+                key={song.id}
+                className={`song-box mb-2 d-flex align-items-center ${
+                  song.id === selectedSongId ? 'selected' : ''
+                }`}
+              >
+                <div>
                     <img
                       src={`https://cms.samespace.com/assets/${song.cover}`}
                       alt={song.name}
@@ -85,9 +91,9 @@ const SongList = ({ currentPage, setCurrentSong }) => {
                   </div>
                   <div className='container'>
                     <p className='fs-5 m-0'>{song.name}</p>
-                    <p className='artist-name fs-6 m-0'><small>{song.artist}</small></p>
+                    <p className='artist-name artist-faded fs-6 m-0'><small>{song.artist}</small></p>
                   </div>
-                  <p>{`${Math.floor(song.duration / 60)}:${Math.floor(song.duration % 60)}`}</p>
+                  <p className='song-duration'>{`${Math.floor(song.duration / 60)}:${Math.floor(song.duration % 60)}`}</p>
                 </div>
               ))}
             </div>

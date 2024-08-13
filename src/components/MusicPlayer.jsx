@@ -94,8 +94,8 @@ export default function MusicPlayer({ currentSong }) {
     <div className="music-player row">
       <div className="details container d-flex flex-column justify-content-center">
         <div className="music-player__info">
-          <h3 className="music-player__title">{currentSong?.name}</h3>
-          <p className="music-player__artist">{currentSong?.artist}</p>
+          <p className="music-player__title fs-2 fw-bold m-0">{currentSong?.name}</p>
+          <p className="music-player__artist artist-faded fs-6">{currentSong?.artist}</p>
         </div>
         <div className="music-player__image-container rounded-circle d-flex justify-content-center align-items-center">
           {currentSong ?(
