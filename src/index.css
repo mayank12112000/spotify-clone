@@ -177,12 +177,6 @@ button{
   height: 2.5rem;
   font-size: larger;
 }
-@media (min-width: 768px){
-  .music-player-controls{
-  position: relative;
-  top: -55px;
-  }
-}
 .musicplayer-icon{
   border-radius: 50%;
   color: white;
@@ -250,4 +244,7 @@ button{
 }
 .plr-3{
   padding-left: 1rem;
+}
+.player-toggles{
+  height: 200px;
 }

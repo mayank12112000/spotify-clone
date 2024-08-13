@@ -114,6 +114,8 @@ export default function MusicPlayer({ currentSong }) {
         }
         </div>
       </div>
+      <div className="player-toggles">
+
       {currentSong && (
         <div className="music-player-progress">
           <input
@@ -123,7 +125,7 @@ export default function MusicPlayer({ currentSong }) {
             value={(currentTime / duration) * 100 || 0}
             onChange={handleProgressChange}
             className="progress-bar"
-          />
+            />
         </div>
       )}
       {currentSong && (
@@ -173,6 +175,7 @@ export default function MusicPlayer({ currentSong }) {
           )}
         </div>
       )}
+      </div>
       <audio ref={audioRef} />
     </div>
   );
