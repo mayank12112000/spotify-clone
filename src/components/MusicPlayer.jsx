@@ -14,7 +14,7 @@ export default function MusicPlayer({ currentSong }) {
       console.log("isplaying value:", isPlaying);
       console.log("currrent play executed");
       audioRef.current.play()
-      .then(()=>setIsPlaying(true))
+      .then(()=>{setIsPlaying(true); setIsMuted(false)})
       .catch((err) => {
         console.log("error occured:", err);
       });

@@ -50,9 +50,10 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+  border-radius: 0.75rem;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #7e7f8d;
 }
 button:focus,
 button:focus-visible {
@@ -182,7 +183,7 @@ button{
   color: #fff; /* Set dot color to white */
 }
 .faded{
-  color:  #494747; 
+  color:  #615f5f; 
 }
 .progress-bar{
  width: 100%;

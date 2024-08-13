@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Navbar() {
+export default function Navbar({setCurrentPage,currentPage}) {
  
   return (
     <div className="d-flex align-items-center">
@@ -10,8 +10,8 @@ export default function Navbar() {
       </div>
       <div className="pages">
       <div className="my-3 mx-0 btn-container container">
-        <button className='mx-1 fs-4'> For You </button>
-        <button className='mx-3 fs-4'> Top Tracks </button> <br />
+        <button onClick={()=>setCurrentPage("for-you")} className={`mx-1 fw-bold fs-4 ${currentPage==="for-you"?"":"faded"}`}> For You </button>
+        <button onClick={()=>setCurrentPage("top-tracks")} className={`mx-3 fw-bold fs-4 ${currentPage==="top-tracks"?"":"faded"}`}> Top Tracks </button> <br />
         </div>
       </div>
   </div>
