@@ -142,20 +142,22 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
                 className={`fa fa-backward internal-icon  musicplayer-icon ${currentSong.seq === 0? "faded":""} mx-3`}
                 aria-hidden="true"
               ></i>
-          
+          {/* <big> */}
+
             {isPlaying ? (
               <i
-              className="fa fa-pause-circle  internal-icon musicplayer-icon mx-3 fs-1"
+              className="fa fa-pause-circle play-pause-icon  musicplayer-icon mx-3"
               onClick={togglePlayback}
               aria-hidden="true"
               ></i>
             ) : (
               <i
-              className="fa fa-play-circle  internal-icon musicplayer-icon mx-3 fs-1"
+              className="fa fa-play-circle play-pause-icon  musicplayer-icon mx-3"
               onClick={togglePlayback}
               aria-hidden="true"
               ></i>
             )}
+            {/* </big> */}
               <i
                 onClick={nextSong}
                 className={`fa fa-forward  internal-icon musicplayer-icon ${currentSong.seq >= (songsList.length - 1 )?"faded":""} mx-3`}

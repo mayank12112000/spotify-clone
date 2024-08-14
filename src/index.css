@@ -244,7 +244,11 @@ button{
 .internal-icon{
   font-weight: 700;
   letter-spacing: 2.5px;
-  font-size: 2rem; 
+  font-size: 1.75rem; 
+  padding-top: 0.3rem;
+}
+.play-pause-icon{
+  font-size: 2.5rem;
 }
 .plr-3{
   padding-left: 1rem;
