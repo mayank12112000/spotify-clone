@@ -71,7 +71,7 @@ function App() {
         <div className="col-sm songlist-col">
           <SongList songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
-        <div className="col-sm d-flex justify-content-center p-0">
+        <div  className="col-sm d-flex min-h-90 justify-content-center p-0">
           <MusicPlayer songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
       </div>

@@ -317,3 +317,6 @@ button{
 .offcanvas-body::-webkit-scrollbar{
   display: none;
 }
+.min-h-90{
+  min-height: 90vh;
+}
