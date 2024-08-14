@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import SongList from "./components/SongList";
 import MusicPlayer from "./components/MusicPlayer";
 import "./App.css";
-import useDominantColor from "./utils/useDominantColor";
 import Offcanvas from "./components/Offcanvas";
 
 function App() {
@@ -11,7 +10,6 @@ function App() {
   const [error, setError] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const coverImageUrl = currentSong ? `https://cms.samespace.com/assets/${currentSong.cover}` : null;
-  const dominantColor = useDominantColor(coverImageUrl);
   const [currentPage,setCurrentPage] = useState("for-you")
   const [songs, setSongs] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -63,7 +61,7 @@ function App() {
 
 
   return (
-    <div className="max-height" style={{ background: `linear-gradient(to right, ${dominantColor}, black)` }}>
+    <div className="max-height" style={{ background: `linear-gradient(to right, ${currentSong ? currentSong?.accent : "black"}, black)` }}>
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
       <div className="container m-0">
 
@@ -76,10 +74,10 @@ function App() {
         </div>
       </div>
       </div>
-      <div style={{ background: `linear-gradient(to left, ${dominantColor}, black)` }} className="fs-2 offcanvas-trigger offcanvas-footer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+      <div style={{ background: `linear-gradient(to left, ${currentSong ? currentSong?.accent : "black"}, black)` }} className="fs-2 offcanvas-trigger offcanvas-footer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
         <span onClick={()=>setCurrentPage("for-you")}>Click to open tracks →</span>
       </div>
-      <Offcanvas setCurrentPage={setCurrentPage} dominantColor={dominantColor} currentPage={currentPage} setCurrentSong={setCurrentSong} currentSong={currentSong} songsList={songsList} />
+      <Offcanvas setCurrentPage={setCurrentPage} currentPage={currentPage} setCurrentSong={setCurrentSong} currentSong={currentSong} songsList={songsList} />
     </div>
 
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Offcanvas({setCurrentSong,setCurrentPage,currentSong,songsList,currentPage,dominantColor}) {
+export default function Offcanvas({setCurrentSong,setCurrentPage,currentSong,songsList,currentPage}) {
   const [searchTerm, setSearchTerm] = useState("");
 
   // filtering the songs as per the search input
@@ -20,7 +20,7 @@ export default function Offcanvas({setCurrentSong,setCurrentPage,currentSong,son
   return (
     <div
       style={{
-        background: `linear-gradient(to left, ${dominantColor}, #5d5f60)`,
+        background: `linear-gradient(to left, ${currentSong ? currentSong?.accent : "black"}, #5d5f60)`,
         color: "white",
       }}
       className="offcanvas offcanvas-start"
