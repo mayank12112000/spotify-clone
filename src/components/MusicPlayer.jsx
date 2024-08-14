@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import SongList from './SongList';
 
 export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCurrentSong }) {
   console.log(songsList)
@@ -53,16 +54,16 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       if(currentSong.seq === 0){
         setCurrentSong(currentSong)
       }else{
-        const previousSong = songs.find((song)=>song.seq === currentSong.seq -1)
+        const previousSong = songsList.find((song)=>song.seq === currentSong.seq -1)
         setCurrentSong(previousSong)
       }
     }
   };
   const nextSong =()=>{
-    if(currentSong.seq === songs.length-1){
+    if(currentSong.seq === songsList.length-1){
       setCurrentSong(currentSong)
     }else{
-      const nextSong = songs.find((song)=>song.seq === currentSong.seq + 1)
+      const nextSong = songsList.find((song)=>song.seq === currentSong.seq + 1)
       setCurrentSong(nextSong)
     }
   }
@@ -146,7 +147,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
           <div className="d-flex justify-content-center">
               <i
                 onClick={previousSong}
-                className="fa fa-backward internal-icon  musicplayer-icon faded mx-3"
+                className={`fa fa-backward internal-icon  musicplayer-icon ${currentSong.seq === 0? "faded":""} mx-3`}
                 aria-hidden="true"
               ></i>
           
@@ -165,7 +166,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
             )}
               <i
                 onClick={nextSong}
-                className="fa fa-forward  internal-icon musicplayer-icon faded mx-3"
+                className={`fa fa-forward  internal-icon musicplayer-icon ${currentSong.seq === (songsList.length - 1 )?"faded":""} mx-3`}
                 aria-hidden="true"
               ></i>
           </div>
