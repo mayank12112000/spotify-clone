@@ -20,7 +20,7 @@ export default function Offcanvas({setCurrentSong,setSongsList,setCurrentPage,cu
         background: `linear-gradient(to left, ${currentSong ? currentSong?.accent : "black"}, #5d5f60)`,
         color: "white",
       }}
-      className="offcanvas offcanvas-start"
+      className="offcanvas offcanvas-start whole-offcanvas"
       data-bs-scroll="true"
       tabIndex="-1"
       id="offcanvasWithBothOptions"
