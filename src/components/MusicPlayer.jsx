@@ -60,7 +60,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
     }
   };
   const nextSong =()=>{
-    if(currentSong.seq === songsList.length-1){
+    if(currentSong.seq >= songsList.length-1){
       setCurrentSong(currentSong)
     }else{
       const nextSong = songsList.find((song)=>song.seq === currentSong.seq + 1)
@@ -166,7 +166,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
             )}
               <i
                 onClick={nextSong}
-                className={`fa fa-forward  internal-icon musicplayer-icon ${currentSong.seq === (songsList.length - 1 )?"faded":""} mx-3`}
+                className={`fa fa-forward  internal-icon musicplayer-icon ${currentSong.seq >= (songsList.length - 1 )?"faded":""} mx-3`}
                 aria-hidden="true"
               ></i>
           </div>
