@@ -6,12 +6,47 @@ import "./App.css";
 import useDominantColor from "./utils/useDominantColor";
 
 function App() {
+  
   const [error, setError] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const coverImageUrl = currentSong ? `https://cms.samespace.com/assets/${currentSong.cover}` : null;
   const dominantColor = useDominantColor(coverImageUrl);
   const [currentPage,setCurrentPage] = useState("for-you")
+  const [songs, setSongs] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+
+  useEffect(() => {
+    const fetchSongs = async () => {
+      try {
+        const response = await fetch("https://cms.samespace.com/items/songs");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        const songsWithDurations = await Promise.all(
+          data.data.map(async (song,idx) => {
+            return new Promise((resolve) => {
+              const audio = new Audio(song.url);
+              audio.addEventListener("loadedmetadata", () => {
+                resolve({
+                  ...song,
+                  duration: audio.duration,seq:idx
+                });
+              });
+            });
+          })
+        );
+        setSongs(songsWithDurations);
+      } catch (err) {
+        console.error(err.message); // Changed from setError to console.error for simplicity
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSongs();
+  }, []);
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -21,10 +56,10 @@ function App() {
 
       <div className="row">
         <div className="col-sm">
-          <SongList  currentPage={currentPage} setCurrentSong={setCurrentSong} />
+          <SongList songs={songs} setSongs={setSongs}  currentPage={currentPage} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
         <div className="col-sm d-flex justify-content-center p-0">
-          <MusicPlayer currentSong={currentSong} />
+          <MusicPlayer songs={songs} setSongs={setSongs} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
       </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
-export default function MusicPlayer({ currentSong }) {
+export default function MusicPlayer({ songs,setSongs,currentSong,setCurrentSong }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -46,25 +46,34 @@ export default function MusicPlayer({ currentSong }) {
     setIsMuted(!isMuted);
   };
 
-  const skipBackward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Math.max(
-        0,
-        audioRef.current.currentTime - 10
-      );
-      setCurrentTime(audioRef.current.currentTime); // Update state to reflect change
-    }
-  };
+  const previousSong = () => {
+    if(currentSong){
 
-  const skipForward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Math.min(
-        audioRef.current.duration,
-        audioRef.current.currentTime + 10
-      );
-      setCurrentTime(audioRef.current.currentTime); // Update state to reflect change
+      if(currentSong.seq === 0){
+        setCurrentSong(currentSong)
+      }else{
+        const previousSong = songs.find((song)=>song.seq === currentSong.seq -1)
+        setCurrentSong(previousSong)
+      }
     }
   };
+  const nextSong =()=>{
+    if(currentSong.seq === songs.length-1){
+      setCurrentSong(currentSong)
+    }else{
+      const nextSong = songs.find((song)=>song.seq === currentSong.seq + 1)
+      setCurrentSong(nextSong)
+    }
+  }
+  // const nextSong = () => {
+  //   if (audioRef.current) {
+  //     audioRef.current.currentTime = Math.min(
+  //       audioRef.current.duration,
+  //       audioRef.current.currentTime + 10
+  //     );
+  //     setCurrentTime(audioRef.current.currentTime); // Update state to reflect change
+  //   }
+  // };
 
   const handleProgressChange = (event) => {
     const newTime = (event.target.value / 100) * duration;
@@ -135,7 +144,7 @@ export default function MusicPlayer({ currentSong }) {
           </button>
           <div className="d-flex justify-content-center">
               <i
-                onClick={skipBackward}
+                onClick={previousSong}
                 className="fa fa-backward internal-icon  musicplayer-icon faded mx-3"
                 aria-hidden="true"
               ></i>
@@ -154,7 +163,7 @@ export default function MusicPlayer({ currentSong }) {
               ></i>
             )}
               <i
-                onClick={skipForward}
+                onClick={nextSong}
                 className="fa fa-forward  internal-icon musicplayer-icon faded mx-3"
                 aria-hidden="true"
               ></i>

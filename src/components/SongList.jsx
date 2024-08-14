@@ -1,43 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-const SongList = ({ currentPage, setCurrentSong }) => {
-  const [songs, setSongs] = useState(null);
-  const [loading, setLoading] = useState(true);
+const SongList = ({ currentPage, setCurrentSong, songs, currentSong }) => {
   const [songsList, setSongsList] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSongId, setSelectedSongId] = useState(null); // State to track the selected song
-
-  useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        const response = await fetch("https://cms.samespace.com/items/songs");
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        const songsWithDurations = await Promise.all(
-          data.data.map(async (song) => {
-            return new Promise((resolve) => {
-              const audio = new Audio(song.url);
-              audio.addEventListener("loadedmetadata", () => {
-                resolve({
-                  ...song,
-                  duration: audio.duration,
-                });
-              });
-            });
-          })
-        );
-        setSongs(songsWithDurations);
-      } catch (err) {
-        console.error(err.message); // Changed from setError to console.error for simplicity
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSongs();
-  }, []);
 
   useEffect(() => {
     if (currentPage === "top-tracks") {
@@ -55,10 +21,12 @@ const SongList = ({ currentPage, setCurrentSong }) => {
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     song.artist.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   const handleSongClick = (song) => {
     setCurrentSong(song);
     setSelectedSongId(song.id); // Set the selected song ID
   };
+
   return (
     <main className='song-list-container container'>
       <div className="row m-3 songlist-row">
@@ -76,13 +44,13 @@ const SongList = ({ currentPage, setCurrentSong }) => {
             <div className="w-100">
               {filteredSongs && filteredSongs.map((song) => (
                 <div
-                onClick={() => handleSongClick(song)}
-                key={song.id}
-                className={`song-box mb-2 d-flex align-items-center ${
-                  song.id === selectedSongId ? 'selected' : ''
-                }`}
-              >
-                <div>
+                  onClick={() => handleSongClick(song)}
+                  key={song.id}
+                  className={`song-box mb-2 d-flex align-items-center ${
+                    currentSong && song.seq === currentSong.seq ? 'selected' : ''
+                  }`}
+                >
+                  <div>
                     <img
                       src={`https://cms.samespace.com/assets/${song.cover}`}
                       alt={song.name}
