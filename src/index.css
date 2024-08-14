@@ -127,7 +127,8 @@ button{
   background-color: transparent;
   color: white;
 }
-@media (min-width: 768px) {
+
+@media (min-width: 1200px) {
   .song-list-container {
     margin-left: 13.5rem;
     margin-right: 10rem;
@@ -247,4 +248,15 @@ button{
 }
 .player-toggles{
   height: 200px;
+}
+/* Default state (visible) */
+.song-list-container {
+  display: block; /* Or any other default display value */
+}
+
+/* Hide the song-list-container when the screen width is 775px or less */
+@media (max-width: 775px) {
+  .song-list-container {
+    display: none;
+  }
 }
