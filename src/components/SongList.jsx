@@ -15,7 +15,6 @@ const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong ,current
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
-  console.log(currentSong)
   return (
     <main className='song-list-container container'>
       <div className="row m-3 songlist-row">

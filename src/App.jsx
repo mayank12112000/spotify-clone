@@ -50,7 +50,6 @@ function App() {
 
     fetchSongs();
   }, []);
-  console.log("songs seq:",songsList)
   useEffect(() => {
     if (currentPage === "top-tracks") {
       setSongsToShow(songs?.filter((song) => song.top_track === true).map((song,idx)=>({...song,seq:idx})));
@@ -59,8 +58,6 @@ function App() {
     }
   }, [songs,currentPage]);
 
-console.log("songs to show:",songsToShow)
-console.log("songs lists:",songsList)
 
 
   return (

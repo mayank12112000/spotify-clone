@@ -12,8 +12,6 @@ export default function MusicPlayer({ songsList,currentSong,setCurrentSong }) {
     if (audioRef.current) {
       audioRef.current.src = currentSong?.url || "";
       audioRef.current.load();
-      console.log("isplaying value:", isPlaying);
-      console.log("currrent play executed");
       audioRef.current.play()
       .then(()=>{setIsPlaying(true); setIsMuted(false)})
       .catch((err) => {
@@ -89,9 +87,6 @@ export default function MusicPlayer({ songsList,currentSong,setCurrentSong }) {
       }
     }
   };
-  useEffect(() => {
-    console.log("isplaying value", isPlaying);
-  }, [isPlaying]);
   return (
     <div className="music-player row mt-2">
       <div className="details p-0 container d-flex flex-column justify-content-center">
