@@ -215,7 +215,7 @@ button{
   min-height: 100vh;
 }
 .artist-faded{
-  color: #afb3b4;
+  color: #7b7e7f;
 }
 
 .progress-bar {
@@ -260,6 +260,32 @@ button{
     display: none;
   }
 }
+@media (min-width: 775px) {
+  .offcanvas-trigger {
+    pointer-events: none;   /* Prevent clicks */
+  }
+}
 .spotify-icon-box{
   width: 8.5rem;
+}
+.offcanvas-close{
+  position: relative;
+  color: white;
+  bottom: 6px;
+  right: 3px;
+  margin-right: 2px;
+}
+.offcanvas-footer{
+  height: 50px;
+  background-color: rgb(81, 45, 45);
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+@media (min-width: 775px) {
+  .offcanvas-footer {
+    display: none;   /* Prevent clicks */
+  }
 }

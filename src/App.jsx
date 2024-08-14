@@ -4,6 +4,7 @@ import SongList from "./components/SongList";
 import MusicPlayer from "./components/MusicPlayer";
 import "./App.css";
 import useDominantColor from "./utils/useDominantColor";
+import Offcanvas from "./components/Offcanvas";
 
 function App() {
   
@@ -75,7 +76,13 @@ function App() {
         </div>
       </div>
       </div>
+      <div style={{ background: `linear-gradient(to left, ${dominantColor}, black)` }} className="fs-2 offcanvas-trigger offcanvas-footer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+        <span onClick={()=>setCurrentPage("for-you")}>Tracks for you →</span>
+        <span onClick={()=>setCurrentPage("top-tracks")}>Top Tracks→</span>
+      </div>
+      <Offcanvas dominantColor={dominantColor} currentPage={currentPage} setCurrentSong={setCurrentSong} songs={songs} currentSong={currentSong} songsList={songsList} />
     </div>
+
   );
 }
 

@@ -67,15 +67,6 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       setCurrentSong(nextSong)
     }
   }
-  // const nextSong = () => {
-  //   if (audioRef.current) {
-  //     audioRef.current.currentTime = Math.min(
-  //       audioRef.current.duration,
-  //       audioRef.current.currentTime + 10
-  //     );
-  //     setCurrentTime(audioRef.current.currentTime); // Update state to reflect change
-  //   }
-  // };
 
   const handleProgressChange = (event) => {
     const newTime = (event.target.value / 100) * duration;
@@ -105,8 +96,8 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
     <div className="music-player row">
       <div className="details p-0 container d-flex flex-column justify-content-center">
         <div className="music-player__info">
-          <p className="music-player__title plr-3 fs-2 fw-bold m-0">{currentSong?.name}</p>
-          <p className="music-player__artist plr-3 artist-faded fs-6">{currentSong?.artist}</p>
+          <p className="music-player__title plr-3 fs-2 fw-bold m-0">{currentSong?currentSong.name:"Enjoy the music"}</p>
+          <p className="music-player__artist plr-3 artist-faded fs-6">{currentSong? currentSong.artist:"Mayank Keshari"}</p>
         </div>
         <div className="music-player__image-container rounded-circle d-flex justify-content-center align-items-center">
           {currentSong ?(
@@ -141,7 +132,8 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       )}
       {currentSong && (
         <div className="music-player-controls d-flex align-items-center justify-content-between">
-          <button className="musicplayer-icon bg-player">
+          <button className="musicplayer-icon bg-player offcanvas-trigger"
+          type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
             <span>...</span>
           </button>
           <div className="d-flex justify-content-center">
