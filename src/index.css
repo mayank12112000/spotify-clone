@@ -218,7 +218,8 @@ button{
   min-height: 100vh;
 }
 .artist-faded{
-  color: #7b7e7f;
+  color: #afb0b0;
+  font-weight: 500;
 }
 
 .progress-bar {
