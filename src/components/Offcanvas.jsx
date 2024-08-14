@@ -25,7 +25,7 @@ export default function Offcanvas({setCurrentSong,setCurrentPage,currentSong,son
       }}
       className="offcanvas offcanvas-start"
       data-bs-scroll="true"
-      tabindex="-1"
+      tabIndex="-1"
       id="offcanvasWithBothOptions"
       aria-labelledby="offcanvasWithBothOptionsLabel"
     >
