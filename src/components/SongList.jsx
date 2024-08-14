@@ -15,6 +15,7 @@ const SongList = ({setCurrentSong, currentSong , songsList}) => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  console.log(currentSong)
   return (
     <main className='song-list-container container'>
       <div className="row m-3 songlist-row">
@@ -32,7 +33,7 @@ const SongList = ({setCurrentSong, currentSong , songsList}) => {
             <div className="w-100">
               {filteredSongs && filteredSongs.map((song) => (
                 <div onClick={() => handleSongClick(song)} key={song.id}
-                className={`song-box mb-2 d-flex align-items-center ${currentSong && song.seq === currentSong.seq ? 'selected' : ''}`}>
+                className={`song-box mb-2 d-flex align-items-center ${currentSong && song.id === currentSong.id ? 'selected' : ''}`}>
                   <div>
                     <img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.name} className="img-fluid songlist-images"/>
                   </div>

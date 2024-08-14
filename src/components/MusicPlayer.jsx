@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
 export default function MusicPlayer({ songsList,currentSong,setCurrentSong }) {
-  console.log(songsList)
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);

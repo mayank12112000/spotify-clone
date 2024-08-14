@@ -324,3 +324,6 @@ button{
 .min-h-90{
   min-height: 90vh;
 }
+.offcanvas-start{
+  width: 18rem !important;
+}
