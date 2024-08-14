@@ -75,7 +75,7 @@ function App() {
       </div>
       </div>
       <div style={{ background: `linear-gradient(to left, ${currentSong ? currentSong?.accent : "black"}, black)` }} className="fs-2 offcanvas-trigger offcanvas-footer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-        <span onClick={()=>setCurrentPage("for-you")}>Click to open tracks →</span>
+        <span>Click to open tracks →</span>
       </div>
       <Offcanvas setSongsList={setSongsList} songsToShow={songsToShow} setCurrentPage={setCurrentPage} currentPage={currentPage} setCurrentSong={setCurrentSong} currentSong={currentSong} songsList={songsList} />
     </div>
