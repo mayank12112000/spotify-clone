@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 
-export default function Offcanvas({setCurrentSong,setCurrentPage,currentSong,songsList,currentPage}) {
+export default function Offcanvas({setCurrentSong,setSongsList,setCurrentPage,currentSong,songsToShow,songsList,currentPage}) {
   const [searchTerm, setSearchTerm] = useState("");
-
-  // filtering the songs as per the search input
-  const filteredSongs = songsList?.filter(
-    (song) =>
-      song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      song.artist.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredSongs = songsToShow?.filter((song) =>
+    song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    song.artist.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleSongClick = (song) => {
+    setSongsList(songsToShow)
     setCurrentSong(song);
   };
-  console.log("offcanvas filtered songs", filteredSongs);
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -69,7 +66,7 @@ export default function Offcanvas({setCurrentSong,setCurrentPage,currentSong,son
               {filteredSongs &&
                 filteredSongs.map((song) => (
                   <div onClick={() => handleSongClick(song)} key={song.id} 
-                  className={`song-box mb-2 d-flex align-items-center ${currentSong && song.seq === currentSong.seq? "selected": ""}`}>
+                  className={`song-box mb-2 d-flex align-items-center ${currentSong && song.id === currentSong.id? "selected": ""}`}>
                     <div>
                       <img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.name} className="img-fluid songlist-images"/>
                     </div>

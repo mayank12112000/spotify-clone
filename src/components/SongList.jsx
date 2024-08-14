@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-const SongList = ({setCurrentSong, currentSong , songsList}) => {
+const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong ,currentPage, songsList}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  
-  const filteredSongs = songsList?.filter((song) =>
+  const filteredSongs = songsToShow?.filter((song) =>
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     song.artist.toLowerCase().includes(searchTerm.toLowerCase())
   );
   // setting the current song while clicking
   const handleSongClick = (song) => {
+    setSongsList(songsToShow)
     setCurrentSong(song);
   };
   // handling the search input

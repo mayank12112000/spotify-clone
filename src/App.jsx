@@ -13,10 +13,12 @@ function App() {
   const [currentPage,setCurrentPage] = useState("for-you")
   const [songs, setSongs] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+  const [songsToShow,setSongsToShow] = useState(null)
   const [songsList, setSongsList] = useState(null);
 
-
+  useEffect(()=>{
+    setSongsToShow(songsList)
+  },[songsList])
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -51,13 +53,14 @@ function App() {
   console.log("songs seq:",songsList)
   useEffect(() => {
     if (currentPage === "top-tracks") {
-      setSongsList(songs?.filter((song) => song.top_track === true).map((song,idx)=>({...song,seq:idx})));
+      setSongsToShow(songs?.filter((song) => song.top_track === true).map((song,idx)=>({...song,seq:idx})));
     } else {
-      setSongsList(songs?.map((song,idx)=>({...song,seq:idx})));
+      setSongsToShow(songs?.map((song,idx)=>({...song,seq:idx})));
     }
-  }, [songs, currentPage]);
+  }, [songs,currentPage]);
 
-
+console.log("songs to show:",songsToShow)
+console.log("songs lists:",songsList)
 
 
   return (
@@ -67,7 +70,7 @@ function App() {
 
       <div className="row">
         <div className="col-sm songlist-col">
-          <SongList songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
+          <SongList setSongsList={setSongsList} currentPage={currentPage} songsToShow={songsToShow} songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
         <div  className="col-sm d-flex min-h-90 justify-content-center p-0">
           <MusicPlayer songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
@@ -77,7 +80,7 @@ function App() {
       <div style={{ background: `linear-gradient(to left, ${currentSong ? currentSong?.accent : "black"}, black)` }} className="fs-2 offcanvas-trigger offcanvas-footer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
         <span onClick={()=>setCurrentPage("for-you")}>Click to open tracks →</span>
       </div>
-      <Offcanvas setCurrentPage={setCurrentPage} currentPage={currentPage} setCurrentSong={setCurrentSong} currentSong={currentSong} songsList={songsList} />
+      <Offcanvas setSongsList={setSongsList} songsToShow={songsToShow} setCurrentPage={setCurrentPage} currentPage={currentPage} setCurrentSong={setCurrentSong} currentSong={currentSong} songsList={songsList} />
     </div>
 
   );
