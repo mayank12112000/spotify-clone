@@ -277,11 +277,14 @@ button{
   width: 8.5rem;
 }
 .offcanvas-close{
-  position: relative;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
   color: white;
-  bottom: 9px;
-  right: 9px;
+  top: 1rem;
+  right: -1.5rem;
   margin-right: 2px;
+  font-size: 2rem;
 }
 .offcanvas-footer{
   height: 50px;

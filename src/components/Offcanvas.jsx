@@ -28,7 +28,7 @@ console.log("offcanvas filtered songs",filteredSongs)
         <div onClick={()=>setCurrentPage("top-tracks")} className={`mx-1 offcanvas-trigger fw-bold fs-4 ${currentPage==="top-tracks"?"":"route-faded"}`}
         // type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
         >Top Tracks </div>
-        <button  type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa fa-times fs-1 offcanvas-close" aria-hidden="true"></i></button>
+        <i data-bs-dismiss="offcanvas" aria-label="Close" className="fa fa-times offcanvas-close" aria-hidden="true"></i>
     </div>
     <div className="offcanvas-body small">
         <div className="search-box">
