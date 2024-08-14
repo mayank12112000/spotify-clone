@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-const SongList = ({ currentPage, setCurrentSong, songs, currentSong , songsList}) => {
-  const [selectedSongId, setSelectedSongId] = useState(null); // State to track the selected song
+const SongList = ({setCurrentSong, currentSong , songsList}) => {
   const [searchTerm, setSearchTerm] = useState("");
   
   const filteredSongs = songsList?.filter((song) =>
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     song.artist.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
+  // setting the current song while clicking
   const handleSongClick = (song) => {
     setCurrentSong(song);
-    setSelectedSongId(song.id); // Set the selected song ID
   };
-
+  // handling the search input
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -33,19 +31,10 @@ const SongList = ({ currentPage, setCurrentSong, songs, currentSong , songsList}
           <div className="h-100 justify-content-center align-items-center">
             <div className="w-100">
               {filteredSongs && filteredSongs.map((song) => (
-                <div
-                  onClick={() => handleSongClick(song)}
-                  key={song.id}
-                  className={`song-box mb-2 d-flex align-items-center ${
-                    currentSong && song.seq === currentSong.seq ? 'selected' : ''
-                  }`}
-                >
+                <div onClick={() => handleSongClick(song)} key={song.id}
+                className={`song-box mb-2 d-flex align-items-center ${currentSong && song.seq === currentSong.seq ? 'selected' : ''}`}>
                   <div>
-                    <img
-                      src={`https://cms.samespace.com/assets/${song.cover}`}
-                      alt={song.name}
-                      className="img-fluid songlist-images"
-                    />
+                    <img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.name} className="img-fluid songlist-images"/>
                   </div>
                   <div className='container'>
                     <p className='fs-5 m-0'>{song.name}</p>

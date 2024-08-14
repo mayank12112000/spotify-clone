@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import SongList from './SongList';
 
-export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCurrentSong }) {
+export default function MusicPlayer({ songsList,currentSong,setCurrentSong }) {
   console.log(songsList)
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -9,6 +8,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  // playing the current song selected and setting to unmute while selecting
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = currentSong?.url || "";
@@ -22,13 +22,13 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       });
     }
   }, [currentSong]);
-
+  // to check the song playing in non muting and vice versa
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.muted = isMuted;
     }
   }, [isMuted]);
-
+  
   useEffect(() => {
     const updateProgress = () => {
       if (audioRef.current) {
@@ -43,11 +43,11 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       audioRef.current?.removeEventListener("timeupdate", updateProgress);
     };
   }, []);
-
+  // to mute 
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
-
+  // moving to previous song function
   const previousSong = () => {
     if(currentSong){
 
@@ -59,6 +59,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       }
     }
   };
+  // moving to next song 
   const nextSong =()=>{
     if(currentSong.seq >= songsList.length-1){
       setCurrentSong(currentSong)
@@ -67,7 +68,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       setCurrentSong(nextSong)
     }
   }
-
+  // use the seekerof music progress bar 
   const handleProgressChange = (event) => {
     const newTime = (event.target.value / 100) * duration;
     if (audioRef.current) {
@@ -75,7 +76,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
       setCurrentTime(newTime);
     }
   };
-
+  // to toggle play & pause
   const togglePlayback = () => {
     if (audioRef.current) {
       if (isPlaying) {
