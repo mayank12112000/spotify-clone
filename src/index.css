@@ -291,6 +291,7 @@ button{
   font-size: 2rem;
 }
 .offcanvas-footer{
+  border-top: 1px solid #615f5f; ;
   height: 50px;
   background-color: rgb(81, 45, 45);
   position: sticky;
