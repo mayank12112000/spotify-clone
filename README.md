@@ -22,10 +22,8 @@ A fully responsive music player interface built with React, designed to match th
 ## API
 The project uses the following API to fetch song data:
 
-Endpoint: https://cms.samespace.com/items/songs
-Images: Fetch images based on the "cover" key from the API, e.g., https://cms.samespace.com/assets/{COVER_IMAGE_ID}.
-Deployment
-The project is deployed on [Vercel/Netlify]. You can access the live demo here.
+Endpoint: https://cms.********.com/items/songs
+Images: Fetch images based on the "cover" key from the API, e.g., https://cms.******.com/assets/{COVER_IMAGE_ID}.
 
 ## How to Use
 - **Search**: Use the search bar to find songs by title or artist.
