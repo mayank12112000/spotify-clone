@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
-const SongList = ({ currentPage, setCurrentSong, songs, currentSong }) => {
-  const [songsList, setSongsList] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+const SongList = ({ currentPage, setCurrentSong, songs, currentSong , songsList}) => {
   const [selectedSongId, setSelectedSongId] = useState(null); // State to track the selected song
-
-  useEffect(() => {
-    if (currentPage === "top-tracks") {
-      setSongsList(songs.filter((song) => song.top_track === true));
-    } else {
-      setSongsList(songs);
-    }
-  }, [songs, currentPage]);
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
+  const [searchTerm, setSearchTerm] = useState("");
+  
   const filteredSongs = songsList?.filter((song) =>
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     song.artist.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  
   const handleSongClick = (song) => {
     setCurrentSong(song);
     setSelectedSongId(song.id); // Set the selected song ID
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
   return (
     <main className='song-list-container container'>
       <div className="row m-3 songlist-row">

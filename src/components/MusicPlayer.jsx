@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
-export default function MusicPlayer({ songs,setSongs,currentSong,setCurrentSong }) {
+export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCurrentSong }) {
+  console.log(songsList)
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -38,7 +39,7 @@ export default function MusicPlayer({ songs,setSongs,currentSong,setCurrentSong 
     audioRef.current.addEventListener("timeupdate", updateProgress);
 
     return () => {
-      audioRef.current.removeEventListener("timeupdate", updateProgress);
+      audioRef.current?.removeEventListener("timeupdate", updateProgress);
     };
   }, []);
 

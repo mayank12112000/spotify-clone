@@ -14,6 +14,8 @@ function App() {
   const [currentPage,setCurrentPage] = useState("for-you")
   const [songs, setSongs] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const [songsList, setSongsList] = useState(null);
 
 
   useEffect(() => {
@@ -47,7 +49,17 @@ function App() {
 
     fetchSongs();
   }, []);
-  if (error) return <div>Error: {error}</div>;
+  console.log("songs seq:",songsList)
+  useEffect(() => {
+    if (currentPage === "top-tracks") {
+      setSongsList(songs?.filter((song) => song.top_track === true).map((song,idx)=>({...song,seq:idx})));
+    } else {
+      setSongsList(songs?.map((song,idx)=>({...song,seq:idx})));
+    }
+  }, [songs, currentPage]);
+
+
+
 
   return (
     <div className="max-height" style={{ background: `linear-gradient(to right, ${dominantColor}, black)` }}>
@@ -56,10 +68,10 @@ function App() {
 
       <div className="row">
         <div className="col-sm">
-          <SongList songs={songs} setSongs={setSongs}  currentPage={currentPage} currentSong={currentSong} setCurrentSong={setCurrentSong} />
+          <SongList songsList={songsList} songs={songs} setSongs={setSongs}  currentPage={currentPage} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
         <div className="col-sm d-flex justify-content-center p-0">
-          <MusicPlayer songs={songs} setSongs={setSongs} currentSong={currentSong} setCurrentSong={setCurrentSong} />
+          <MusicPlayer songsList={songsList} songs={songs} setSongs={setSongs} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
       </div>
       </div>
