@@ -93,7 +93,7 @@ export default function MusicPlayer({ songsList,songs,setSongs,currentSong,setCu
     console.log("isplaying value", isPlaying);
   }, [isPlaying]);
   return (
-    <div className="music-player row">
+    <div className="music-player row mt-2">
       <div className="details p-0 container d-flex flex-column justify-content-center">
         <div className="music-player__info">
           <p className="music-player__title plr-3 fs-2 fw-bold m-0">{currentSong?currentSong.name:"Enjoy the music"}</p>

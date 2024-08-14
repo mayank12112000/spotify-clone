@@ -68,7 +68,7 @@ function App() {
       <div className="container m-0">
 
       <div className="row">
-        <div className="col-sm">
+        <div className="col-sm songlist-col">
           <SongList songsList={songsList} songs={songs} setSongs={setSongs}  currentPage={currentPage} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
         <div className="col-sm d-flex justify-content-center p-0">
@@ -77,10 +77,9 @@ function App() {
       </div>
       </div>
       <div style={{ background: `linear-gradient(to left, ${dominantColor}, black)` }} className="fs-2 offcanvas-trigger offcanvas-footer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-        <span onClick={()=>setCurrentPage("for-you")}>Tracks for you →</span>
-        <span onClick={()=>setCurrentPage("top-tracks")}>Top Tracks→</span>
+        <span onClick={()=>setCurrentPage("for-you")}>Click to open tracks →</span>
       </div>
-      <Offcanvas dominantColor={dominantColor} currentPage={currentPage} setCurrentSong={setCurrentSong} songs={songs} currentSong={currentSong} songsList={songsList} />
+      <Offcanvas setCurrentPage={setCurrentPage} dominantColor={dominantColor} currentPage={currentPage} setCurrentSong={setCurrentSong} songs={songs} currentSong={currentSong} songsList={songsList} />
     </div>
 
   );

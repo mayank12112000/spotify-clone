@@ -146,7 +146,7 @@ button{
   right: 1rem;
 }
 .song-box{
-  height: 5rem;
+  height: 4.5rem;
   padding-left: 1rem;
   padding-right: 0.5rem;
 }
@@ -161,9 +161,12 @@ button{
 
 /* music player */
 .music-player{
-  width: 100%;
+  width: 70%;
+  margin-left: 20px;
+  margin-right: 20px;
   /* max-width: 700px; */
   min-width: 290px;
+  margin-bottom: 50px;
 }
 .music-player-image{
   width: 100%;
@@ -192,8 +195,8 @@ button{
   width: 40px; /* Adjust width as needed */
   height: 40px; /* Adjust height as needed */
   border-radius: 50%;
-  background-color:  #222121; ; /* Match the background color of the circle */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); /* Add subtle drop shadow */
+  background-color:  #2c2b2b; /* Match the background color of the circle */
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25); /* Add subtle drop shadow */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
 .bg-player span{
@@ -271,14 +274,15 @@ button{
 .offcanvas-close{
   position: relative;
   color: white;
-  bottom: 6px;
-  right: 3px;
+  bottom: 9px;
+  right: 9px;
   margin-right: 2px;
 }
 .offcanvas-footer{
   height: 50px;
   background-color: rgb(81, 45, 45);
-  position: sticky;
+  position: absolute;
+  width: 100vw;
   bottom: 0px;
   display: flex;
   justify-content: space-around;
@@ -288,4 +292,20 @@ button{
   .offcanvas-footer {
     display: none;   /* Prevent clicks */
   }
+}
+@media(max-width:775px){
+  .offcanvas-trigger-nav{
+    display: none;
+  }
+}
+@media(min-width:775px){
+  .songlist-col{
+    width: 0px;
+  }
+}
+.offcanvas-header{
+  padding-bottom: 0;
+}
+.offcanvas-body::-webkit-scrollbar{
+  display: none;
 }

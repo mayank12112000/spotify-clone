@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Offcanvas({ setCurrentSong, songs, currentSong , songsList,currentPage,dominantColor}) {
+export default function Offcanvas({ setCurrentSong,setCurrentPage, songs, currentSong , songsList,currentPage,dominantColor}) {
     const [selectedSongId, setSelectedSongId] = useState(null); // State to track the selected song
   const [searchTerm, setSearchTerm] = useState("");
   
@@ -21,7 +21,13 @@ console.log("offcanvas filtered songs",filteredSongs)
     
 <div style={{ background: `linear-gradient(to left, ${dominantColor}, #5d5f60)`,color:"white" }} className="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div className="offcanvas-header">
-        <h5 className="offcanvas-title" id="offcanvasBottomLabel">{currentPage==="for-you"?"For You":"Top Tracks"}</h5>
+  {/* <div className="my-3 mx-5 btn-container container"> */}
+        <div onClick={()=>setCurrentPage("for-you")} className={`mx-3 offcanvas-trigger fw-bold fs-4 ${currentPage==="for-you"?"":"route-faded"}` }
+        //  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
+         >For You </div>
+        <div onClick={()=>setCurrentPage("top-tracks")} className={`mx-1 offcanvas-trigger fw-bold fs-4 ${currentPage==="top-tracks"?"":"route-faded"}`}
+        // type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"
+        >Top Tracks </div>
         <button  type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa fa-times fs-1 offcanvas-close" aria-hidden="true"></i></button>
     </div>
     <div className="offcanvas-body small">
