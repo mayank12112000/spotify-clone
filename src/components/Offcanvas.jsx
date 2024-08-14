@@ -27,10 +27,10 @@ export default function Offcanvas({setCurrentSong,setSongsList,setCurrentPage,cu
       aria-labelledby="offcanvasWithBothOptionsLabel"
     >
       <div className="offcanvas-header">
-        <div onClick={() => setCurrentPage("for-you")} className={`mx-3 offcanvas-trigger fw-bold fs-4 
+        <div onClick={() => setCurrentPage("for-you")} className={`mx-1 offcanvas-trigger fw-bold fs-4 
         ${currentPage === "for-you" ? "" : "route-faded" }`}>For You{" "}
         </div>
-        <div onClick={() => setCurrentPage("top-tracks")} className={`mx-1 offcanvas-trigger fw-bold fs-4 
+        <div onClick={() => setCurrentPage("top-tracks")} className={`mx-3 offcanvas-trigger fw-bold fs-4 
           ${currentPage === "top-tracks" ? "" : "route-faded" }`}>Top Tracks{" "}
         </div>
         <i
