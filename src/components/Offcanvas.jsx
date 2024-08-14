@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Offcanvas({setCurrentSong,setSongsList,setCurrentPage,currentSong,songsToShow,songsList,currentPage}) {
+export default function Offcanvas({setCurrentSong,setSongsList,setCurrentPage,currentSong,songsToShow,currentPage}) {
   const [searchTerm, setSearchTerm] = useState("");
   const filteredSongs = songsToShow?.filter((song) =>
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

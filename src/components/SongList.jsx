@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong ,currentPage, songsList}) => {
+const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const filteredSongs = songsToShow?.filter((song) =>
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
