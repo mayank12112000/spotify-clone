@@ -171,6 +171,7 @@ button{
   /* max-width: 700px; */
   min-width: 290px;
   margin-bottom: 50px;
+
 }
 .music-player-image{
   width: 100%;
@@ -189,7 +190,7 @@ button{
   border-radius: 50%;
   color: white;
   font-size: larger;
-
+  cursor: pointer;
 }
 .bg-player{
   
