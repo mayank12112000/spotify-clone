@@ -17,6 +17,8 @@ export default function Navbar({setCurrentPage,currentPage}) {
         className={`mx-1 offcanvas-trigger-nav fw-bold fs-4 ${currentPage==="top-tracks"?"":"route-faded"}`}>Top Tracks </button> <br />
         </div>
       </div>
+      <img className='profile-photo'  src="images/mayank.png" alt="" />
+
   </div>
   )
 }
