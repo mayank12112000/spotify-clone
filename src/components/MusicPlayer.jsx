@@ -35,11 +35,20 @@ export default function MusicPlayer({ songsList,currentSong,setCurrentSong }) {
     };
 
     audioRef.current.addEventListener("timeupdate", updateProgress);
+    audioRef.current.addEventListener("ended", handleSongEnd);
 
     return () => {
       audioRef.current?.removeEventListener("timeupdate", updateProgress);
+      audioRef.current.removeEventListener("ended", handleSongEnd);
+
     };
   }, []);
+  const handleSongEnd = () => {
+    audioRef.current.currentTime = 0
+    audioRef.current.pause()
+    setIsPlaying(false)
+  };
+
   // to mute 
   const toggleMute = () => {
     setIsMuted(!isMuted);
