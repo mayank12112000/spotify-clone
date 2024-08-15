@@ -167,6 +167,7 @@ button{
 /* music player */
 .music-player{
   width: 70%;
+  height: 50%;
   margin-left: 20px;
   margin-right: 20px;
   /* max-width: 700px; */
@@ -251,7 +252,7 @@ button{
 @media (min-width:1200px) {
   .profile-photo{
 
-    position: absolute;
+    position: fixed;
     bottom: 2rem;
     left: 2rem;
   }
@@ -285,7 +286,7 @@ button{
 }
 
 /* Hide the song-list-container when the screen width is 775px or less */
-@media (max-width: 775px) {
+@media (max-width: 768px) {
   .song-list-container {
     display: none;
   }
@@ -319,12 +320,12 @@ button{
   justify-content: space-around;
   align-items: center;
 }
-@media (min-width: 775px) {
+@media (min-width: 769px) {
   .offcanvas-footer {
     display: none;   /* Prevent clicks */
   }
 }
-@media(max-width:775px){
+@media(max-width:768px){
   .offcanvas-trigger-nav{
     display: none;
   }
