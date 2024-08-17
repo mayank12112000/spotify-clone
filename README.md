@@ -18,7 +18,9 @@ A fully responsive music player interface built with React, designed to match th
 - **Bootstrap**: For styling and layout.
 - **CSS**: Custom styles for animations and transitions.
 - **REST API**: Fetches song data from a provided API.
-
+  
+## Deployement:
+This project is deployed on netlify. Here's the deployed link: https://mayank-spotify.netlify.app/
 ## API
 The project uses the following API to fetch song data:
 
