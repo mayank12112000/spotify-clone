@@ -7,7 +7,6 @@ import Offcanvas from "./components/Offcanvas";
 
 function App() {
   
-  const [error, setError] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const coverImageUrl = currentSong ? `https://cms.samespace.com/assets/${currentSong.cover}` : null;
   const [currentPage,setCurrentPage] = useState("for-you")
@@ -23,6 +22,7 @@ function App() {
     const fetchSongs = async () => {
       try {
         const response = await fetch("https://cms.samespace.com/items/songs");
+        console.log(response)
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -59,7 +59,6 @@ function App() {
   }, [songs,currentPage]);
 
 
-
   return (
     <div className="max-height" style={{ background: `linear-gradient(to right, ${currentSong ? currentSong?.accent : "black"}, black)` }}>
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage}/>
@@ -67,7 +66,7 @@ function App() {
 
       <div className="row">
         <div className="col-sm songlist-col">
-          <SongList setSongsList={setSongsList} currentPage={currentPage} songsToShow={songsToShow} songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
+          <SongList loading={loading} setSongsList={setSongsList} currentPage={currentPage} songsToShow={songsToShow} songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />
         </div>
         <div  className="col-sm d-flex min-h-90 justify-content-center p-0">
           <MusicPlayer songsList={songsList} currentSong={currentSong} setCurrentSong={setCurrentSong} />

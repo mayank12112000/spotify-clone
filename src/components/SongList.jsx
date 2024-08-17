@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong }) => {
+const SongList = ({loading,setSongsList,songsToShow,setCurrentSong, currentSong }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [showTimeoutMessage,setShowTimeoutMessage] = useState(false)
   const filteredSongs = songsToShow?.filter((song) =>
     song.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     song.artist.toLowerCase().includes(searchTerm.toLowerCase())
@@ -15,6 +16,14 @@ const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong }) => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  useEffect(()=>{
+    const timeout = setTimeout(() => {
+      if(loading){
+        setShowTimeoutMessage(true)
+      }
+    }, 1200);
+    return ()=>clearTimeout(timeout)
+  },[loading])
   return (
     <main className='song-list-container container'>
       <div className="row m-3 songlist-row">
@@ -23,9 +32,19 @@ const SongList = ({setSongsList,songsToShow,setCurrentSong, currentSong }) => {
             onChange={handleSearchChange}
             type="text"
             placeholder='Search Song, Artist'
-          />
+            />
           <i className="search-icon fa fa-search" aria-hidden="true"></i>
         </div>
+            {
+              loading ?<div className="my-2 d-flex flex-column align-items-center justify-content-center">
+               <div className="spinner-border text-secondary " role="status">
+              {/* <span className="visually-hidden">Loading...</span>  */}
+            </div> <br />
+            {
+              showTimeoutMessage? <div>This is taking longer than expected please wait....</div>:<></>
+            }
+              </div>:<></>
+            }
 
         <div className="my-3 song-list d-md-block">
           <div className="h-100 justify-content-center align-items-center">
